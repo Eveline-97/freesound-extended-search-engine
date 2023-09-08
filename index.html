@@ -8,6 +8,7 @@
 
 
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="/style.css">
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
@@ -21,59 +22,106 @@
 
     <h1>Customizable FreeSound Search Engine</h1>
 
-
     <label for="query">Search a sound:</label>
     <input type="search" id="query" name="query">
     <button id="search">go</button>
 
-    <p>
-        <label for="brightness">Brigthness:</label>
-        <p class="explanation">A bright sound is one that is clear/vibrant and/or contains significant high-pitched elements.</p>
-        <input type="text" id="brightness" readonly style="border:0; color:#f6931f; font-weight:bold;">
-    </p>
-    <div id="brightness-range"></div>
+    <div>
+        <h5>note:</h5>
+        <p>
+            for best search results, it is advised to not use more than 3 of the following filters. Some
+            filters have antagonistic properties and might therefore cancel each other out. These are:</p>
+        <ul>
+            <li>brightness &harr; depth</li>
+            <li>hardness &harr; roughness</li>
+            <li>warmth &harr; sharpness</li>
+        </ul>
+        <p>On top of that, some filters have rather similar characteristics, for example depth and boominess, or
+            brightness and hardness.</p>
+    </div>
 
-    <p>
-        <label for="depth">Depth:</label>
-        <p class="explanation">A deep sound is one that conveys the sense of having been made far down below the surface of its source.</p>
-        <input type="text" id="depth" readonly style="border:0; color:#f6931f; font-weight:bold;">
-    </p>
-    <div id="depth-range"></div>
+    <label for="filter1">Choose filter 1:</label>
 
-    <p>
-        <label for="hardness">Hardness:</label>
-        <p class="explanation">A hard sound is one that conveys the sense of having been made (i) by something solid, firm or rigid; or (ii) with a great deal of force.</p>
-        <input type="text" id="hardness" readonly style="border:0; color:#f6931f; font-weight:bold;">
-    </p>
-    <div id="hardness-range"></div>
+    <select name="filters" id="filter1">
+        <option value="none"></option>
+        <option value="brightness">brightness</option>
+        <option value="sharpness">sharpness</option>
+        <option value="depth">depth</option>
+        <option value="warmth">warmth</option>
+        <option value="boominess">boominess</option>
+        <option value="hardness">hardness</option>
+        <option value="roughness">roughness</option>
+    </select>
 
-    <p>
-        <label for="roughness">Roughness:</label>
-        <p class="explanation">A rough sound is one that has an uneven or irregular sonic texture.</p>
-        <input type="text" id="roughness" readonly style="border:0; color:#f6931f; font-weight:bold;">
-    </p>
-    <div id="roughness-range"></div>
+    <div id="brightnessDiv" class="filter">
+        <p>
+            <label for="brightness">Brightness:</label>
+            <input type="text" id="brightness" readonly style="border:0; color:#f6931f; font-weight:bold;">
+        </p>
+        <p class="explanation">A bright sound is one that is clear/vibrant and/or contains significant high-pitched
+            elements.</p>
+        <div id="brightness-range"></div>
+    </div>
 
-    <p>
-        <label for="boominess">Boominess:</label>
-        <p class="explanation">A boomy sound is one that conveys a sense of loudness, depth and resonance.</p>
-        <input type="text" id="boominess" readonly style="border:0; color:#f6931f; font-weight:bold;">
-    </p>
-    <div id="boominess-range"></div>
-
-    <p>
-        <label for="warmth">Warmth:</label>
-        <p class="explanation">A warm sound is one that promotes a sensation analogous to that caused by a physical increase in temperature.</p>
-        <input type="text" id="warmth" readonly style="border:0; color:#f6931f; font-weight:bold;">
-    </p>
-    <div id="warmth-range"></div>
-
-    <p>
-        <label for="sharpness">Sharpness:</label>
+    <div id="sharpnessDiv" class="filter">
+        <p>
+            <label for="sharpness">Sharpness:</label>
+            <input type="text" id="sharpness" readonly style="border:0; color:#f6931f; font-weight:bold;">
+        </p>
         <p class="explanation">A sharp sound is one that suggests it might cut if it were to take on physical form.</p>
-        <input type="text" id="sharpness" readonly style="border:0; color:#f6931f; font-weight:bold;">
-    </p>
-    <div id="sharpness-range"></div>
+        <div id="sharpness-range"></div>
+    </div>
+
+    <div id="depthDiv" class="filter">
+        <p>
+            <label for="depth">Depth:</label>
+            <input type="text" id="depth" readonly style="border:0; color:#f6931f; font-weight:bold;">
+        </p>
+        <p class="explanation">A deep sound is one that conveys the sense of having been made far down below the surface
+            of
+            its source.</p>
+        <div id="depth-range"></div>
+    </div>
+
+    <div id="warmthDiv" class="filter">
+        <p>
+            <label for="warmth">Warmth:</label>
+            <input type="text" id="warmth" readonly style="border:0; color:#f6931f; font-weight:bold;">
+        </p>
+        <p class="explanation">A warm sound is one that promotes a sensation analogous to that caused by a physical
+            increase
+            in temperature.</p>
+        <div id="warmth-range"></div>
+    </div>
+
+    <div id="boominessDiv" class="filter">
+        <p>
+            <label for="boominess">Boominess:</label>
+            <input type="text" id="boominess" readonly style="border:0; color:#f6931f; font-weight:bold;">
+        </p>
+        <p class="explanation">A boomy sound is one that conveys a sense of loudness, depth and resonance.</p>
+        <div id="boominess-range"></div>
+    </div>
+
+    <div id="hardnessDiv" class="filter">
+        <p>
+            <label for="hardness">Hardness:</label>
+            <input type="text" id="hardness" readonly style="border:0; color:#f6931f; font-weight:bold;">
+        </p>
+        <p class="explanation">A hard sound is one that conveys the sense of having been made (i) by something solid,
+            firm
+            or rigid; or (ii) with a great deal of force.</p>
+        <div id="hardness-range"></div>
+    </div>
+
+    <div id="roughnessDiv" class="filter">
+        <p>
+            <label for="roughness">Roughness:</label>
+            <input type="text" id="roughness" readonly style="border:0; color:#f6931f; font-weight:bold;">
+        </p>
+        <p class="explanation">A rough sound is one that has an uneven or irregular sonic texture.</p>
+        <div id="roughness-range"></div>
+    </div>
 
     <div id="sound-div">
 
