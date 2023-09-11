@@ -2,8 +2,10 @@ freesound.setToken("u7CIOWYDOCYLH1DlxfIHtCpX70YrfzVew1CkpRrR");
 
 /*DOM elements*/
 const $searchButton = document.getElementById('search');
-let $queryField = document.getElementById('query');
+const $queryField = document.getElementById('query');
 const $soundDiv = document.getElementById('sound-div');
+const $extraFilter = document.getElementById('extra-filter');
+const $deleteFilter = document.getElementById('delete-filter');
 
 /*FILTERS*/
 let filters = [
@@ -66,25 +68,72 @@ filters.forEach(filter => {
 })
 
 /*display filters*/
-const $filter1 = document.getElementById('filter1');
-let currentFilter = null;
-$filter1.addEventListener('change', () => {
-    if ($filter1.value != currentFilter) {
-        if (currentFilter == null) {
-            document.getElementById($filter1.value + 'Div').style.display = 'block';
-            let obj = filters.find(o => o.name === $filter1.value);
-            obj.shown = true;
-            currentFilter = $filter1.value;
-        } else {
-            document.getElementById(currentFilter + 'Div').style.display = 'none';
-            let obj = filters.find(o => o.name === currentFilter);
-            obj.shown = false;
-            document.getElementById($filter1.value + 'Div').style.display = 'block';
-            obj = filters.find(o => o.name === $filter1.value);
-            obj.shown = true;
-            currentFilter = $filter1.value;
+let displayedFilters = [];
+
+function filterChange(filter) {
+    let number = filter.id.replace('filter', '')-1;
+
+    let currentFilter = null;
+    filter.addEventListener('change', () => {
+        if (filter.value != currentFilter) {
+            if (currentFilter == null) {
+                document.getElementById(filter.value + 'Div').style.display = 'block';
+                let obj = filters.find(o => o.name === filter.value);
+                obj.shown = true;
+                currentFilter = filter.value;
+            } else {
+                document.getElementById(currentFilter + 'Div').style.display = 'none';
+                let obj = filters.find(o => o.name === currentFilter);
+                obj.shown = false;
+                document.getElementById(filter.value + 'Div').style.display = 'block';
+                obj = filters.find(o => o.name === filter.value);
+                obj.shown = true;
+                currentFilter = filter.value;
+            }
         }
-    }
+
+        displayedFilters[number] = filter.value;
+        console.log(displayedFilters);
+    })
+};
+
+filterChange(document.getElementById('filter1'));
+
+/*extra filter*/
+let currentAmountOfFilters = 1;
+$extraFilter.addEventListener('click', () => {
+    let newFilter =
+        `
+        <label class="filterSelector" for="filter${currentAmountOfFilters + 1}" id="filter${currentAmountOfFilters + 1}-label">Choose filter ${currentAmountOfFilters + 1}:</label>
+
+        <select name="filters" id="filter${currentAmountOfFilters + 1}">
+            <option value="none"></option>
+            <option value="brightness">brightness</option>
+            <option value="sharpness">sharpness</option>
+            <option value="depth">depth</option>
+            <option value="warmth">warmth</option>
+            <option value="boominess">boominess</option>
+            <option value="hardness">hardness</option>
+            <option value="roughness">roughness</option>
+        </select>
+    `;
+    $('#extra-filter').before(newFilter);
+    filterChange(document.getElementById(`filter${currentAmountOfFilters + 1}`));
+    currentAmountOfFilters++;
+    console.log(currentAmountOfFilters);
+})
+
+$deleteFilter.addEventListener('click', () => {
+    $(`#filter${currentAmountOfFilters}`).remove();
+    $(`#filter${currentAmountOfFilters}-label`).remove();
+    
+    //make selected filter invisible
+    let currentFilter = displayedFilters[currentAmountOfFilters-1];
+    document.getElementById(currentFilter + 'Div').style.display = 'none';
+    let obj = filters.find(o => o.name === currentFilter);
+    obj.shown = false;
+
+    currentAmountOfFilters--;
 })
 
 /*search*/
@@ -138,6 +187,5 @@ function displaySounds(arr) {
 }
 
 function errorMsg() {
-    console.log('error');
+    alert('Your search was invalid. Please try again.');
 }
-

@@ -40,18 +40,24 @@
             brightness and hardness.</p>
     </div>
 
-    <label for="filter1">Choose filter 1:</label>
+    <div class="filterselectors">
 
-    <select name="filters" id="filter1">
-        <option value="none"></option>
-        <option value="brightness">brightness</option>
-        <option value="sharpness">sharpness</option>
-        <option value="depth">depth</option>
-        <option value="warmth">warmth</option>
-        <option value="boominess">boominess</option>
-        <option value="hardness">hardness</option>
-        <option value="roughness">roughness</option>
-    </select>
+        <label for="filter1" id="filter1-label">Choose filter 1:</label>
+
+        <select class="filter-selector" name="filters" id="filter1">
+            <option value="none"></option>
+            <option value="brightness">brightness</option>
+            <option value="sharpness">sharpness</option>
+            <option value="depth">depth</option>
+            <option value="warmth">warmth</option>
+            <option value="boominess">boominess</option>
+            <option value="hardness">hardness</option>
+            <option value="roughness">roughness</option>
+        </select>
+
+        <button id="extra-filter">+</button>
+        <button id="delete-filter">-</button>
+    </div>
 
     <div id="brightnessDiv" class="filter">
         <p>
