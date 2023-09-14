@@ -40,7 +40,79 @@
             brightness and hardness.</p>
     </div>
 
+    <div class="singleEventSelectors">
+        <label for="single-event">Look for single events only</label>
+        <input type="checkbox" id="single-event" name="single-event">
+    </div>
+
+    <div id="tonality-div">
+        <h4>Tonality</h4>
+        <label for="root-note" id="root-note-label">Root note</label>
+        <select class="filter-selector" name="root-note" id="root-note">
+            <option value="none"></option>
+            <option value="A">A</option>
+            <option value="A#">A#</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="C#">C#</option>
+            <option value="D#">D#</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="F#">F#</option>
+            <option value="G">G</option>
+            <option value="G#">G#</option>
+        </select>
+
+        <label for="scale" id="scale-label">Scale</label>
+        <select class="filter-selector" name="scale" id="scale">
+            <option value="none"></option>
+            <option value="major">major</option>
+            <option value="minor">minor</option>
+        </select>
+        <p>
+            <label for="tonality-confidence">Tonality Confidence:</label>
+            <input type="text" id="tonality-confidence" readonly style="border:0; color:#f6931f; font-weight:bold;">
+        </p>
+        <div id="tonality-range"></div>
+    </div>
+
+    <div id="note-name-div">
+        <h4>Pitch</h4>
+        <label for="pitch-selector" id="pitch-label">Pitch</label>
+        <select class="pitch-selector" name="pitch" id="pitch">
+            <option value="none"></option>
+            <option value="A">A</option>
+            <option value="A#">A#</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="C#">C#</option>
+            <option value="D#">D#</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="F#">F#</option>
+            <option value="G">G</option>
+            <option value="G#">G#</option>
+        </select>
+
+        <label for="octave=selector" id="octave-label">Octave</label>
+        <select class="octave-selector" name="octave" id="octave">
+            <option value="none"></option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+        </select>
+    </div>
+
     <div class="filterselectors">
+
+        <h4>Other filters</h4>
 
         <label for="filter1" id="filter1-label">Choose filter 1:</label>
 
@@ -129,9 +201,11 @@
         <div id="roughness-range"></div>
     </div>
 
-    <div id="sound-div">
+    <button id="download-files">Download all files</button>
 
+    <div id="sound-div">
     </div>
+
 
 
     <footer>
