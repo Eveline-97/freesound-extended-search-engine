@@ -1,3 +1,9 @@
+/*TOKEN*/
+document.getElementById('apply-key').addEventListener('click', () => {
+    let token = document.getElementById('key').value;
+    freesound.setToken(token);
+})
+
 freesound.setToken("u7CIOWYDOCYLH1DlxfIHtCpX70YrfzVew1CkpRrR");
 
 /*DOM elements*/
@@ -313,4 +319,5 @@ function deleteAllSounds() {
 
 function errorMsg() {
     alert('Your search was invalid or the audio files could not be found. Please try again later.');
+    //401: inauthenticated, your API key is invalid
 }
