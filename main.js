@@ -6,7 +6,6 @@ const $queryField = document.getElementById('query');
 const $soundDiv = document.getElementById('sound-div');
 const $extraFilter = document.getElementById('extra-filter');
 const $deleteFilter = document.getElementById('delete-filter');
-const $downloadAll = document.getElementById('download-files');
 
 /*FILTERS*/
 let filters = [
@@ -120,7 +119,6 @@ $('#root-note').change(() => {
 
 $('#scale').change(() => {
     filters[0].scale = $scale.value;
-    console.log(filters[0]);
 })
 
 /*pitch*/
@@ -131,11 +129,9 @@ $('#pitch').change(() => {
     } else {
         filters[1].shown = true;
     }
-    console.log(filters[1]);
 })
 $('#octave').change(() => {
     filters[1].octave = $octave.value;
-    console.log(filters[1]);
 })
 
 /*RANGE FILTERS*/
@@ -181,7 +177,6 @@ function filterChange(filter) {
         }
 
         displayedFilters[number] = filter.value;
-        console.log(displayedFilters);
     })
 };
 
@@ -209,7 +204,6 @@ $extraFilter.addEventListener('click', () => {
     $('#extra-filter').before(newFilter);
     filterChange(document.getElementById(`filter${currentAmountOfFilters + 1}`));
     currentAmountOfFilters++;
-    console.log(currentAmountOfFilters);
 })
 
 $deleteFilter.addEventListener('click', () => {
@@ -228,7 +222,6 @@ $deleteFilter.addEventListener('click', () => {
 /*SEARCH*/
 let foundSounds = [];
 let soundList = [];
-let links = [];
 
 let filterString = `ac_tonality:[B major] ac_tonality_confidence:[0.8 TO 1]`;
 
@@ -288,29 +281,29 @@ function displaySounds(arr) {
             sound.id,
             result => {
                 foundSounds[index].src = result.url;
-
                 snd = new Audio(result.previews['preview-hq-mp3']);
+                snd.setAttribute('title', result.name);
                 snd.controls = true;
                 document.getElementById('sound-div').appendChild(snd);
-                snd.play();
                 soundList.push(snd);
-
-                //create link for each sound
-                let link = document.createElement('a');
-                link.id = `link-for-${sound.id}`;
-                link.style.display = 'none';
-                link.setAttribute('href', result.name);
-                links[index] = link;
-
-                document.body.appendChild(link);
             },
             errorMsg
         )
     })
-
     console.log(soundList);
 }
 
+/*Play all sounds*/
+document.getElementById('play-all').addEventListener('click', () => {
+    soundList.forEach(sound => {
+        sound.play();
+    })
+});
+document.getElementById('stop-all').addEventListener('click', () => {
+    soundList.forEach(sound => {
+        sound.pause();
+    })
+});
 
 function deleteAllSounds() {
     $('#sound-div').remove();
@@ -321,12 +314,3 @@ function deleteAllSounds() {
 function errorMsg() {
     alert('Your search was invalid or the audio files could not be found. Please try again later.');
 }
-
-//download al audio files
-$downloadAll.addEventListener('click', () => {
-    let sounds = document.getElementsByTagName('audio');
-    for (let i = 0; i < sounds.length; i++) {
-        console.log(sounds[i]);
-        sounds[i].download();
-    }
-})
