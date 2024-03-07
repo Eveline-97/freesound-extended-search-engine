@@ -14,26 +14,24 @@
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"
         integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
-    <script src="/freesound.js"></script>
-    <script defer src="/main.js"></script>
+    <script src="./freesound.js"></script>
+    <script defer src="./main.js"></script>
 </head>
 
 <body>
 
     <h1>Extended Freesound Search Engine</h1>
 
-    <label for="key">Insert your Freesound <a href="https://freesound.org/apiv2/apply/" target="_blank" rel="noopener noreferrer">API key</a></label>
-    <input type="text" id="key" name="key">
-    <button id="apply-key">Apply key</button>
+    <div id="api-key">
+        <label for="key">Insert your Freesound <a href="https://freesound.org/apiv2/apply/" target="_blank"
+                rel="noopener noreferrer">API key</a></label>
+        <input type="text" id="key" name="key">
+        <button id="apply-key">Apply key</button>
+    </div>
 
-    <label for="query">Search a sound:</label>
-    <input type="search" id="query" name="query">
-    <button id="search">go</button>
-
-    <div>
-        <h5>note:</h5>
+    <div id="note">
         <p>
-            for best search results, it is advised to not use more than 3 of the following filters. Some
+            Note: for best search results, it is advised to not use more than 3 of the following filters. Some
             filters have antagonistic properties and might therefore cancel each other out. These are:</p>
         <ul>
             <li>brightness &harr; depth</li>
@@ -43,6 +41,16 @@
         <p>On top of that, some filters have rather similar characteristics, for example depth and boominess, or
             brightness and hardness.</p>
     </div>
+
+    <hr>
+
+    <h2>Search</h2>
+
+    <label for="query">Search a sound:</label>
+    <input type="search" id="query" name="query">
+    <button id="search">go</button>
+
+    <h3>Filters</h3>
 
     <div class="singleEventSelectors">
         <label for="single-event">Look for single events only</label>
@@ -207,12 +215,16 @@
 
     <!--button id="download-all">Download all files</button-->
 
+    <h2>Result</h2>
+
     <button id="play-all">Play all</button>
     <button id="stop-all">Stop all</button>
     <div id="sound-div"></div>
 
+    <hr>
+
     <footer>
-        <p>&copy; 2023 <a href="https://evelinevervliet.com">Eveline Vervliet</a></p>
+        <p>&copy; 2024 <a href="https://evelinevervliet.com">Eveline Vervliet</a></p>
     </footer>
 
 </body>
