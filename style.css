@@ -1,3 +1,105 @@
+:root {
+    --red: rgb(252, 25, 55);
+    --dark-grey: rgb(25, 24, 34);
+    --black: rgb(14, 14, 22);
+}
+
+body {
+    background-color: var(--black);
+    color: white;
+    font-family:'Courier New', Courier, monospace;
+}
+
+h3, h4 {
+    margin: 2em 0em 0.4em 0em;
+}
+
+a {
+    color: var(--red);
+}
+
+.explanation {
+    text-align: justify;
+    font-size: 0.9em;
+}
+
+#note {
+    margin-left: 1em;
+    font-size: 0.8em;
+    max-width: 50em;
+    text-align: justify;
+}
+
+#api-key {
+    border: 1px solid var(--red);
+    padding: 0.8em;
+    text-align: center;
+    box-shadow: 1px 1px 2px white;
+}
+
+button {
+    font-family:'Courier New', Courier, monospace;
+    background-color: var(--red) !important;
+    padding: 0.5em 0.8em;
+    border-radius: 15px;
+    min-width: 3em;
+}
+
+button:hover, 
+button:active {
+    cursor: pointer;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid white;
+    margin: 1em 0 3em 0;
+    padding: 0;
+}
+
+footer {
+    text-align: center;
+}
+
+input, select {
+    background-color: white !important;
+    color: var(--red) !important;
+    border-radius: 5px;
+    min-width: 3em;
+}
+
 .filter {
     display: none;
+}
+
+.filter-selector {
+    background-color: var(--dark-grey);
+    box-shadow: inset 1px 1px 3px white;
+}
+
+.ui-slider {
+    max-width: 70vw;
+}
+
+.ui-slider-handle,
+.ui-state-default {
+    border: 1px solid black !important;
+    border-radius: 50px;
+    color: var(--red);
+}
+
+.ui-state-active {
+    background: var(--red) !important;
+}
+
+.ui-slider-range {
+    background: var(--red) !important;
+}
+
+#single-event:active,
+#single-event:hover {
+    cursor: pointer;
+    color: var(--red) !important;
 }
