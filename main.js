@@ -287,10 +287,18 @@ function displaySounds(arr) {
             sound.id,
             result => {
                 foundSounds[index].src = result.url;
+                //create audio element
                 snd = new Audio(result.previews['preview-hq-mp3']);
                 snd.setAttribute('title', result.name);
                 snd.controls = true;
-                document.getElementById('sound-div').appendChild(snd);
+                //create div
+                let div = document.createElement('div');
+                div.setAttribute('class', 'audio-element');
+                //add div and elements to sound-div
+                document.getElementById('sound-div').appendChild(div);
+                div.appendChild(snd);
+                div.appendChild(createLink(result.url, 'source'));
+                div.appendChild(createLink(result.license, 'license'));
                 soundList.push(snd);
             },
             errorMsg
@@ -298,6 +306,26 @@ function displaySounds(arr) {
     })
     console.log(soundList);
 }
+
+function createLink(url, name) {
+    let link = document.createElement("a");
+    link.setAttribute('href', url);
+    link.setAttribute('target', 'blank');
+    link.setAttribute('rel', 'noopener noreferrer');
+    if (name == 'license') {
+        link.innerHTML = licenses[url];
+    } else {
+        link.innerHTML = name;
+    }
+    return link;
+}
+
+
+const licenses = {
+    'http://creativecommons.org/publicdomain/zero/1.0/': 'Creative Commons 0',
+    'https://creativecommons.org/licenses/by/4.0/': 'Attribution 4.0'
+}
+
 
 /*Play all sounds*/
 document.getElementById('play-all').addEventListener('click', () => {
