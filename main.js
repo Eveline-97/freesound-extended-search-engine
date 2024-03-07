@@ -4,8 +4,6 @@ document.getElementById('apply-key').addEventListener('click', () => {
     freesound.setToken(token);
 })
 
-freesound.setToken("u7CIOWYDOCYLH1DlxfIHtCpX70YrfzVew1CkpRrR");
-
 /*DOM elements*/
 const $searchButton = document.getElementById('search');
 const $queryField = document.getElementById('query');
@@ -323,6 +321,7 @@ function createLink(url, name) {
 
 const licenses = {
     'http://creativecommons.org/publicdomain/zero/1.0/': 'Creative Commons 0',
+    'http://creativecommons.org/licenses/by/3.0/': 'Attribution 3.0',
     'https://creativecommons.org/licenses/by/4.0/': 'Attribution 4.0'
 }
 
