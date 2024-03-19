@@ -211,16 +211,22 @@ $extraFilter.addEventListener('click', () => {
 })
 
 $deleteFilter.addEventListener('click', () => {
-    $(`#filter${currentAmountOfFilters}`).remove();
-    $(`#filter${currentAmountOfFilters}-label`).remove();
+    if (currentAmountOfFilters != 0) {
+        console.log(currentAmountOfFilters);
+        $(`#filter${currentAmountOfFilters}`).remove();
+        $(`#filter${currentAmountOfFilters}-label`).remove();
 
-    //make selected filter invisible
-    let currentFilter = displayedFilters[currentAmountOfFilters - 1];
-    document.getElementById(currentFilter + 'Div').style.display = 'none';
-    let obj = filters.find(o => o.name === currentFilter);
-    obj.shown = false;
+        //make selected filter invisible
+        let currentFilter = displayedFilters[currentAmountOfFilters - 1];
+        let filterElement = document.getElementById(currentFilter + 'Div');
+        if (filterElement) {
+            document.getElementById(currentFilter + 'Div').style.display = 'none';
+            let obj = filters.find(o => o.name === currentFilter);
+            obj.shown = false;
+        }
 
-    currentAmountOfFilters--;
+        currentAmountOfFilters--;
+    }
 })
 
 /*SEARCH*/
