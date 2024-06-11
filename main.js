@@ -308,6 +308,8 @@ function displaySounds(arr) {
             errorMsg
         )
     })
+    //because sound-div weirdly moves out of result-div
+    $('#sound-div').appendTo('#result-div');
     console.log(soundList);
 }
 

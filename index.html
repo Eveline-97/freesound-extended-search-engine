@@ -43,186 +43,196 @@
 
     <hr>
 
-    <h2>Search</h2>
+    <div id="search-div">
 
-    <label for="query">Search a sound:</label>
-    <input type="search" id="query" name="query">
-    <button id="search">go</button>
+        <h2>Search</h2>
 
-    <h3>Filters</h3>
+        <label for="query">Search a sound:</label>
+        <input type="search" id="query" name="query">
+        <button id="search">go</button>
 
-    <div class="singleEventSelectors">
-        <label for="single-event">Look for single events only</label>
-        <input type="checkbox" id="single-event" name="single-event">
+        <h3>Filters</h3>
+
+        <div class="singleEventSelectors">
+            <label for="single-event">Look for single events only</label>
+            <input type="checkbox" id="single-event" name="single-event">
+        </div>
+
+        <div id="tonality-div">
+            <h4>Tonality</h4>
+            <label for="root-note" id="root-note-label">Root note</label>
+            <select class="filter-selector" name="root-note" id="root-note">
+                <option value="none"></option>
+                <option value="A">A</option>
+                <option value="A#">A#</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="C#">C#</option>
+                <option value="D#">D#</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+                <option value="F#">F#</option>
+                <option value="G">G</option>
+                <option value="G#">G#</option>
+            </select>
+
+            <label for="scale" id="scale-label">Scale</label>
+            <select class="filter-selector" name="scale" id="scale">
+                <option value="none"></option>
+                <option value="major">major</option>
+                <option value="minor">minor</option>
+            </select>
+            <p>
+                <label for="tonality-confidence">Tonality Confidence:</label>
+                <input type="text" id="tonality-confidence" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
+            <div id="tonality-range"></div>
+        </div>
+
+        <div id="note-name-div">
+            <h4>Pitch</h4>
+            <label for="pitch-selector" id="pitch-label">Pitch</label>
+            <select class="pitch-selector" name="pitch" id="pitch">
+                <option value="none"></option>
+                <option value="A">A</option>
+                <option value="A#">A#</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="C#">C#</option>
+                <option value="D#">D#</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+                <option value="F#">F#</option>
+                <option value="G">G</option>
+                <option value="G#">G#</option>
+            </select>
+
+            <label for="octave=selector" id="octave-label">Octave</label>
+            <select class="octave-selector" name="octave" id="octave">
+                <option value="none"></option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+            </select>
+        </div>
+
+        <div class="filterselectors">
+
+            <h4>Other filters</h4>
+
+            <label for="filter1" id="filter1-label">Choose filter 1:</label>
+
+            <select class="filter-selector" name="filters" id="filter1">
+                <option value="none"></option>
+                <option value="brightness">brightness</option>
+                <option value="sharpness">sharpness</option>
+                <option value="depth">depth</option>
+                <option value="warmth">warmth</option>
+                <option value="boominess">boominess</option>
+                <option value="hardness">hardness</option>
+                <option value="roughness">roughness</option>
+            </select>
+
+            <button id="extra-filter">+</button>
+            <button id="delete-filter">-</button>
+        </div>
+
+        <div id="brightnessDiv" class="filter">
+            <p>
+                <label for="brightness">Brightness:</label>
+                <input type="text" id="brightness" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
+            <p class="explanation">A bright sound is one that is clear/vibrant and/or contains significant high-pitched
+                elements.</p>
+            <div id="brightness-range"></div>
+        </div>
+
+        <div id="sharpnessDiv" class="filter">
+            <p>
+                <label for="sharpness">Sharpness:</label>
+                <input type="text" id="sharpness" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
+            <p class="explanation">A sharp sound is one that suggests it might cut if it were to take on physical form.
+            </p>
+            <div id="sharpness-range"></div>
+        </div>
+
+        <div id="depthDiv" class="filter">
+            <p>
+                <label for="depth">Depth:</label>
+                <input type="text" id="depth" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
+            <p class="explanation">A deep sound is one that conveys the sense of having been made far down below the
+                surface
+                of
+                its source.</p>
+            <div id="depth-range"></div>
+        </div>
+
+        <div id="warmthDiv" class="filter">
+            <p>
+                <label for="warmth">Warmth:</label>
+                <input type="text" id="warmth" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
+            <p class="explanation">A warm sound is one that promotes a sensation analogous to that caused by a physical
+                increase
+                in temperature.</p>
+            <div id="warmth-range"></div>
+        </div>
+
+        <div id="boominessDiv" class="filter">
+            <p>
+                <label for="boominess">Boominess:</label>
+                <input type="text" id="boominess" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
+            <p class="explanation">A boomy sound is one that conveys a sense of loudness, depth and resonance.</p>
+            <div id="boominess-range"></div>
+        </div>
+
+        <div id="hardnessDiv" class="filter">
+            <p>
+                <label for="hardness">Hardness:</label>
+                <input type="text" id="hardness" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
+            <p class="explanation">A hard sound is one that conveys the sense of having been made (i) by something
+                solid,
+                firm
+                or rigid; or (ii) with a great deal of force.</p>
+            <div id="hardness-range"></div>
+        </div>
+
+        <div id="roughnessDiv" class="filter">
+            <p>
+                <label for="roughness">Roughness:</label>
+                <input type="text" id="roughness" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
+            <p class="explanation">A rough sound is one that has an uneven or irregular sonic texture.</p>
+            <div id="roughness-range"></div>
+        </div>
+
     </div>
 
-    <div id="tonality-div">
-        <h4>Tonality</h4>
-        <label for="root-note" id="root-note-label">Root note</label>
-        <select class="filter-selector" name="root-note" id="root-note">
-            <option value="none"></option>
-            <option value="A">A</option>
-            <option value="A#">A#</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-            <option value="C#">C#</option>
-            <option value="D#">D#</option>
-            <option value="D">D</option>
-            <option value="E">E</option>
-            <option value="F">F</option>
-            <option value="F#">F#</option>
-            <option value="G">G</option>
-            <option value="G#">G#</option>
-        </select>
-
-        <label for="scale" id="scale-label">Scale</label>
-        <select class="filter-selector" name="scale" id="scale">
-            <option value="none"></option>
-            <option value="major">major</option>
-            <option value="minor">minor</option>
-        </select>
-        <p>
-            <label for="tonality-confidence">Tonality Confidence:</label>
-            <input type="text" id="tonality-confidence" readonly style="border:0; color:#f6931f; font-weight:bold;">
-        </p>
-        <div id="tonality-range"></div>
-    </div>
-
-    <div id="note-name-div">
-        <h4>Pitch</h4>
-        <label for="pitch-selector" id="pitch-label">Pitch</label>
-        <select class="pitch-selector" name="pitch" id="pitch">
-            <option value="none"></option>
-            <option value="A">A</option>
-            <option value="A#">A#</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-            <option value="C#">C#</option>
-            <option value="D#">D#</option>
-            <option value="D">D</option>
-            <option value="E">E</option>
-            <option value="F">F</option>
-            <option value="F#">F#</option>
-            <option value="G">G</option>
-            <option value="G#">G#</option>
-        </select>
-
-        <label for="octave=selector" id="octave-label">Octave</label>
-        <select class="octave-selector" name="octave" id="octave">
-            <option value="none"></option>
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-        </select>
-    </div>
-
-    <div class="filterselectors">
-
-        <h4>Other filters</h4>
-
-        <label for="filter1" id="filter1-label">Choose filter 1:</label>
-
-        <select class="filter-selector" name="filters" id="filter1">
-            <option value="none"></option>
-            <option value="brightness">brightness</option>
-            <option value="sharpness">sharpness</option>
-            <option value="depth">depth</option>
-            <option value="warmth">warmth</option>
-            <option value="boominess">boominess</option>
-            <option value="hardness">hardness</option>
-            <option value="roughness">roughness</option>
-        </select>
-
-        <button id="extra-filter">+</button>
-        <button id="delete-filter">-</button>
-    </div>
-
-    <div id="brightnessDiv" class="filter">
-        <p>
-            <label for="brightness">Brightness:</label>
-            <input type="text" id="brightness" readonly style="border:0; color:#f6931f; font-weight:bold;">
-        </p>
-        <p class="explanation">A bright sound is one that is clear/vibrant and/or contains significant high-pitched
-            elements.</p>
-        <div id="brightness-range"></div>
-    </div>
-
-    <div id="sharpnessDiv" class="filter">
-        <p>
-            <label for="sharpness">Sharpness:</label>
-            <input type="text" id="sharpness" readonly style="border:0; color:#f6931f; font-weight:bold;">
-        </p>
-        <p class="explanation">A sharp sound is one that suggests it might cut if it were to take on physical form.</p>
-        <div id="sharpness-range"></div>
-    </div>
-
-    <div id="depthDiv" class="filter">
-        <p>
-            <label for="depth">Depth:</label>
-            <input type="text" id="depth" readonly style="border:0; color:#f6931f; font-weight:bold;">
-        </p>
-        <p class="explanation">A deep sound is one that conveys the sense of having been made far down below the surface
-            of
-            its source.</p>
-        <div id="depth-range"></div>
-    </div>
-
-    <div id="warmthDiv" class="filter">
-        <p>
-            <label for="warmth">Warmth:</label>
-            <input type="text" id="warmth" readonly style="border:0; color:#f6931f; font-weight:bold;">
-        </p>
-        <p class="explanation">A warm sound is one that promotes a sensation analogous to that caused by a physical
-            increase
-            in temperature.</p>
-        <div id="warmth-range"></div>
-    </div>
-
-    <div id="boominessDiv" class="filter">
-        <p>
-            <label for="boominess">Boominess:</label>
-            <input type="text" id="boominess" readonly style="border:0; color:#f6931f; font-weight:bold;">
-        </p>
-        <p class="explanation">A boomy sound is one that conveys a sense of loudness, depth and resonance.</p>
-        <div id="boominess-range"></div>
-    </div>
-
-    <div id="hardnessDiv" class="filter">
-        <p>
-            <label for="hardness">Hardness:</label>
-            <input type="text" id="hardness" readonly style="border:0; color:#f6931f; font-weight:bold;">
-        </p>
-        <p class="explanation">A hard sound is one that conveys the sense of having been made (i) by something solid,
-            firm
-            or rigid; or (ii) with a great deal of force.</p>
-        <div id="hardness-range"></div>
-    </div>
-
-    <div id="roughnessDiv" class="filter">
-        <p>
-            <label for="roughness">Roughness:</label>
-            <input type="text" id="roughness" readonly style="border:0; color:#f6931f; font-weight:bold;">
-        </p>
-        <p class="explanation">A rough sound is one that has an uneven or irregular sonic texture.</p>
-        <div id="roughness-range"></div>
-    </div>
+    <hr>
 
     <!--button id="download-all">Download all files</button-->
 
-    <h2>Result</h2>
+    <div id="result-div">
+        <h2>Result</h2>
 
-    <p>Beware of the license of each sound before use!</p>
-
-    <button id="play-all">Play all</button>
-    <button id="stop-all">Stop all</button>
-    <div id="sound-div"></div>
-
-    
+        <div>
+            <p>Beware of the license of each sound before use!</p>
+            <button id="play-all">Play all</button>
+            <button id="stop-all">Stop all</button>
+        </div>
+        <div id="sound-div"></div>
+    </div>
 
     <footer>
         <hr>
