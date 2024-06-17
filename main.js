@@ -1,7 +1,25 @@
 /*TOKEN*/
-document.getElementById('apply-key').addEventListener('click', () => {
-    let token = document.getElementById('key').value;
+const $applyKeyButton = document.getElementById('apply-key');
+const $newKeyButton = document.getElementById('new-key');
+const $keyField = document.getElementById('key');
+
+$applyKeyButton.addEventListener('click', () => {
+    let token = $keyField.value;
     freesound.setToken(token);
+    $applyKeyButton.innerHTML = '&#10004;';
+    $applyKeyButton.classList.add('applied');
+    $newKeyButton.classList.add('show');
+    $newKeyButton.classList.remove('hidden');
+    $keyField.classList.add('hidden');
+    $keyField.value = '';
+})
+
+$newKeyButton.addEventListener('click', () => {
+    $applyKeyButton.innerHTML = 'apply key';
+    $applyKeyButton.classList.remove('applied');
+    $newKeyButton.classList.remove('show');
+    $newKeyButton.classList.add('hidden');
+    $keyField.classList.remove('hidden');
 })
 
 /*DOM elements*/

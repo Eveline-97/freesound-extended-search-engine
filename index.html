@@ -25,8 +25,9 @@
     <div id="api-key">
         <label for="key">Insert your Freesound <a href="https://freesound.org/apiv2/apply/" target="_blank"
                 rel="noopener noreferrer">API key</a></label>
-        <input type="text" id="key" name="key">
-        <button id="apply-key">Apply key</button>
+        <input type="text" id="key" name="key" class="applied">
+        <button id="new-key" class="hidden">new key</button>
+        <button id="apply-key">apply key</button>
     </div>
 
     <div id="note">
@@ -227,7 +228,8 @@
         <h2>Result</h2>
 
         <div>
-            <p>Beware of the license of each sound before use!<br>To download a sound, click on 'source' which will direct
+            <p>Beware of the license of each sound before use!<br>To download a sound, click on 'source' which will
+                direct
                 you to the Freesound webpage of the upload in a new browser tab.</p>
             <button id="play-all">Play all</button>
             <button id="stop-all">Stop all</button>
