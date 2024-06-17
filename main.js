@@ -248,6 +248,25 @@ $deleteFilter.addEventListener('click', () => {
     }
 })
 
+const midiNotes = {
+    'C': 12,
+    'C#': 13,
+    'D': 14,
+    'D#': 15,
+    'E': 16,
+    'F': 17,
+    'F#': 18,
+    'G': 19,
+    'G#': 20,
+    'A': 21,
+    'A#': 22,
+    'B': 23
+}
+
+function calculateMidi(noteName, octave) {
+    return midiNotes[noteName] + 12*octave;
+}
+
 /*SEARCH*/
 let foundSounds = [];
 let soundList = [];
@@ -274,7 +293,7 @@ $searchButton.addEventListener('click', function () {
                 if (filter.rootNote == 'none' || filter.octave == 'none') {
                     alert('Please provide all necessary information for the pitch');
                 }
-                filterString += `ac_note_name:${filter.rootNote}${filter.octave} `;
+                filterString += `ac_note_midi:${calculateMidi(filter.rootNote, filter.octave)} `;
             } else if (filter.name == 'single-event') {
                 filterString += `ac_single_event:true `;
             } else {
