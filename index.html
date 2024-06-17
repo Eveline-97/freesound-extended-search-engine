@@ -52,45 +52,13 @@
         <input type="search" id="query" name="query">
         <button id="search">go</button>
 
-        <h3>Filters</h3>
+        <h4>Tonality/Pitch</h4>
 
         <div class="singleEventSelectors">
             <label for="single-event">Look for single events only</label>
             <input type="checkbox" id="single-event" name="single-event">
         </div>
-
-        <div id="tonality-div">
-            <h4>Tonality</h4>
-            <label for="root-note" id="root-note-label">Root note</label>
-            <select class="filter-selector" name="root-note" id="root-note">
-                <option value="none"></option>
-                <option value="A">A</option>
-                <!--option value="A#">A#</option-->
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <!--option value="C#">C#</option-->
-                <option value="D">D</option>
-                <!--option value="D#">D#</option-->
-                <option value="E">E</option>
-                <option value="F">F</option>
-                <!--option value="F#">F#</option-->
-                <option value="G">G</option>
-                <!--option value="G#">G#</option-->
-            </select>
-
-            <label for="scale" id="scale-label">Scale</label>
-            <select class="filter-selector" name="scale" id="scale">
-                <option value="none"></option>
-                <option value="major">major</option>
-                <option value="minor">minor</option>
-            </select>
-            <p>
-                <label for="tonality-confidence">Tonality Confidence:</label>
-                <input type="text" id="tonality-confidence" readonly style="border:0; color:#f6931f; font-weight:bold;">
-            </p>
-            <div id="tonality-range"></div>
-        </div>
-
+        
         <div id="note-name-div">
             <h4>Pitch</h4>
             <label for="pitch-selector" id="pitch-label">Pitch</label>
@@ -122,6 +90,41 @@
                 <option value="6">6</option>
                 <option value="7">7</option>
             </select>
+        </div>
+
+        <div id="tonality-div">
+            <p>Filter on tonality
+            <input type="checkbox" id="tonality-enable" name="tonality-enable"></p>
+            <div id="tonality-extras" class="hidden">
+                <label for="root-note" id="root-note-label">Root note</label>
+                <select class="filter-selector" name="root-note" id="root-note">
+                    <option value="none"></option>
+                    <option value="A">A</option>
+                    <!--option value="A#">A#</option-->
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <!--option value="C#">C#</option-->
+                    <option value="D">D</option>
+                    <!--option value="D#">D#</option-->
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <!--option value="F#">F#</option-->
+                    <option value="G">G</option>
+                    <!--option value="G#">G#</option-->
+                </select>
+
+                <label for="scale" id="scale-label">Scale</label>
+                <select class="filter-selector" name="scale" id="scale">
+                    <option value="none"></option>
+                    <option value="major">major</option>
+                    <option value="minor">minor</option>
+                </select>
+                <p>
+                    <label for="tonality-confidence">Tonality Confidence:</label>
+                    <input type="text" id="tonality-confidence" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                </p>
+                <div id="tonality-range"></div>
+            </div>
         </div>
 
         <div class="filterselectors">
