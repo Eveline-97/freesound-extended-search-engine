@@ -272,6 +272,7 @@ let foundSounds = [];
 let soundList = [];
 
 let filterString = `ac_tonality:[B major] ac_tonality_confidence:[0.8 TO 1]`;
+let filterQuery;
 
 /*license: 
 "http://creativecommons.org/publicdomain/zero/1.0/"*/
@@ -301,13 +302,18 @@ $searchButton.addEventListener('click', function () {
             }
         }
     });
+    if (filterString == '') {
+        filterQuery = { page_size: $amountOfResults.value }
+    } else {
+        filterQuery = { filter: filterString, page_size: $amountOfResults.value };
+    }
     console.log(filterString);
 
     foundSounds = [];
 
     freesound.textSearch(
         $queryField.value,
-        { filter: filterString, page_size: $amountOfResults.value },
+        filterQuery,
         sounds => {
             sounds.results.forEach(sound => {
                 foundSounds.push(sound);
