@@ -128,6 +128,18 @@ const $rootNote = document.getElementById('root-note');
 const $scale = document.getElementById('scale');
 const $pitch = document.getElementById('pitch');
 const $octave = document.getElementById('octave');
+const $tonalityEnable = document.getElementById('tonality-enable');
+const $tonalityExtras = document.getElementById('tonality-extras');
+
+$('#tonality-enable').change(() => {
+    if ($tonalityEnable.checked) {
+        $tonalityExtras.classList.remove('hidden');
+        filters[0].shown = true;
+    } else {
+        $tonalityExtras.classList.add('hidden');
+        filters[0].shown = false;
+    }
+})
 
 /*tonality*/
 $('#root-note').change(() => {
@@ -398,6 +410,7 @@ function deleteAllSounds() {
 }
 
 function errorMsg() {
-    alert('Your search was invalid or the audio files could not be found. Please try again later.');
+    alert('Your search was invalid. Make sure you applied a correct API key.');
     //401: inauthenticated, your API key is invalid
+    //429: too many requests
 }
