@@ -28,6 +28,7 @@ const $queryField = document.getElementById('query');
 const $soundDiv = document.getElementById('sound-div');
 const $extraFilter = document.getElementById('extra-filter');
 const $deleteFilter = document.getElementById('delete-filter');
+const $amountOfResults = document.getElementById('amount-of-results');
 
 /*FILTERS*/
 let filters = [
@@ -287,7 +288,7 @@ $searchButton.addEventListener('click', function () {
 
     freesound.textSearch(
         $queryField.value,
-        { filter: filterString },
+        { filter: filterString, page_size: $amountOfResults.value },
         sounds => {
             sounds.results.forEach(sound => {
                 foundSounds.push(sound);
