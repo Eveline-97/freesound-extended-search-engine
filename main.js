@@ -267,7 +267,7 @@ $searchButton.addEventListener('click', function () {
                 if (filter.rootNote == 'none' || filter.scale == 'none') {
                     alert('Please provide all necessary information for the tonality');
                 }
-                filterString += `ac_${filter.name}:[${filter.rootNote} ${filter.scale}] `;
+                filterString += `ac_${filter.name}:"${filter.rootNote} ${filter.scale}" `;
                 filterString += `ac_tonality_confidence:[${filter.min / 100} TO ${filter.max / 100}] `;
             } else if (filter.name == 'pitch') {
                 //special case for pitch
