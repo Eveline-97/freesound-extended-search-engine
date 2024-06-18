@@ -7,16 +7,22 @@
 body {
     background-color: var(--black);
     color: white;
-    font-family:'Courier New', Courier, monospace;
+    font-family: 'Courier New', Courier, monospace;
     padding: 0.5em;
 }
 
-h3, h4 {
+h3,
+h4 {
     margin: 2em 0em 0.4em 0em;
 }
 
 a {
+    color: var(--black);
+    text-decoration: none;
+}
+a.style {
     color: var(--red);
+    text-decoration: underline;
 }
 
 .explanation {
@@ -24,22 +30,77 @@ a {
     font-size: 0.9em;
 }
 
-#note {
-    margin-left: 1em;
-    font-size: 0.8em;
-    max-width: 50em;
+/*Tooltip*/
+button#question {
+    background-color: inherit;
+    border: none;
+    min-width: 0em;
+    position: relative;
+    top: -0.5em;
+}
+
+div#tooltip a span {
+    display: none;
+}
+
+div#tooltip a h4:hover {
+    cursor: default;
+}
+
+div#tooltip a:hover span {
+    display: block;
+    position: relative;
+    max-width: 300px;
+    padding: 5px;
+    margin: 10px;
+    z-index: 100;
+    color: black;
+    background-color: #FFFFCC;
+    border: 1px solid #ccc;
+    font: 10px Verdana, sans-serif;
     text-align: justify;
 }
 
+div#tooltip a {
+    position: relative;
+}
+
+div#tooltip a span {
+    display: none;
+}
+
+div#tooltip a:hover span {
+    display: block;
+    position: absolute;
+    width: 300px;
+    color: black;
+    background-color: var(--red);
+    border: 1px solid #ccc;
+    font: 10px Verdana, sans-serif;
+    text-align: justify;
+}
+
+div#tooltip a:hover {
+    text-indent: 0;
+}
+
+#tooltip button {
+    color: var(--red);
+    display: inline-block;
+    font-size: 0.8em;
+    padding-top: 3px;
+    padding: 0em;
+}
+
 button {
-    font-family:'Courier New', Courier, monospace;
+    font-family: 'Courier New', Courier, monospace;
     background-color: var(--red);
     padding: 0.5em 0.8em;
     border-radius: 15px;
     min-width: 3em;
 }
 
-button:hover, 
+button:hover,
 button:active {
     cursor: pointer;
 }
@@ -57,7 +118,8 @@ footer {
     text-align: center;
 }
 
-input, select {
+input,
+select {
     background-color: white !important;
     color: var(--red) !important;
     border-radius: 5px;
@@ -124,7 +186,9 @@ input, select {
 @keyframes applied {
     from {
         background: grey;
-    } to {
+    }
+
+    to {
         background: inherit;
     }
 }
@@ -132,6 +196,7 @@ input, select {
 .hidden {
     display: none;
 }
+
 .show {
     display: inline-block;
 }

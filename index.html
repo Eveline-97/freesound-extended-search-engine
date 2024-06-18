@@ -23,23 +23,11 @@
     <h1>Extended Freesound Search Engine</h1>
 
     <div id="api-key">
-        <label for="key">Insert your Freesound <a href="https://freesound.org/apiv2/apply/" target="_blank"
+        <label for="key">Insert your Freesound <a class="style" href="https://freesound.org/apiv2/apply/" target="_blank"
                 rel="noopener noreferrer">API key</a></label>
         <input type="text" id="key" name="key" class="applied">
         <button id="new-key" class="hidden">new key</button>
         <button id="apply-key">apply key</button>
-    </div>
-
-    <div id="note">
-        <p>
-            Note: for best search results, it is advised to not use more than 3 of the following filters. Some
-            filters have antagonistic properties and might therefore cancel each other out, for example:</p>
-        <ul>
-            <li>brightness &harr; depth</li>
-            <li>warmth &harr; sharpness</li>
-        </ul>
-        <p>On top of that, some filters have rather similar characteristics, for example depth and boominess, or
-            brightness and sharpness.</p>
     </div>
 
     <hr>
@@ -58,7 +46,7 @@
             <label for="single-event">Look for single events only</label>
             <input type="checkbox" id="single-event" name="single-event">
         </div>
-        
+
         <div id="note-name-div">
             <h4>Pitch</h4>
             <label for="pitch-selector" id="pitch-label">Pitch</label>
@@ -94,7 +82,8 @@
 
         <div id="tonality-div">
             <p>Filter on tonality
-            <input type="checkbox" id="tonality-enable" name="tonality-enable"></p>
+                <input type="checkbox" id="tonality-enable" name="tonality-enable">
+            </p>
             <div id="tonality-extras" class="hidden">
                 <label for="root-note" id="root-note-label">Root note</label>
                 <select class="filter-selector" name="root-note" id="root-note">
@@ -121,7 +110,8 @@
                 </select>
                 <p>
                     <label for="tonality-confidence">Tonality Confidence:</label>
-                    <input type="text" id="tonality-confidence" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                    <input type="text" id="tonality-confidence" readonly
+                        style="border:0; color:#f6931f; font-weight:bold;">
                 </p>
                 <div id="tonality-range"></div>
             </div>
@@ -137,7 +127,26 @@
 
         <div class="filterselectors">
 
-            <h4>Other filters</h4>
+            <div id="tooltip">
+                <a href="">
+            <h4>Other filters
+                <button id="question">?</button></h4>
+                    <span>
+                        <p>
+                            For best search results, it is advised to not use more than 3 of the following
+                            filters.
+                            Some filters have antagonistic properties and might therefore cancel each other out, for example:
+                        </p>
+                        <ul>
+                            <li>brightness &harr; depth</li>
+                            <li>warmth &harr; sharpness</li>
+                        </ul>
+                        <p>On top of that, some filters have rather similar characteristics, for example depth and
+                            boominess, or
+                            brightness and sharpness.</p>
+                    </span>
+                </a>
+            </div>
 
             <label for="filter1" id="filter1-label">Choose filter 1:</label>
 
@@ -255,7 +264,7 @@
 
     <footer>
         <hr>
-        <p>&copy; 2024 <a href="https://evelinevervliet.com">Eveline Vervliet</a></p>
+        <p>&copy; 2024 <a class="style" href="https://evelinevervliet.com">Eveline Vervliet</a></p>
     </footer>
 
 </body>
