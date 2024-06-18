@@ -408,6 +408,7 @@ const licenses = {
 
 /*Play all sounds*/
 const $loopAll = document.getElementById('loop-all');
+
 document.getElementById('play-all').addEventListener('click', () => {
     soundList.forEach(sound => {
         sound.play();
@@ -418,6 +419,7 @@ document.getElementById('stop-all').addEventListener('click', () => {
         sound.pause();
     })
 });
+
 $loopAll.addEventListener('click', () => {
     if ($loopAll.innerHTML == 'Loop all') {
         soundList.forEach(sound => {
