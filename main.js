@@ -347,6 +347,8 @@ $searchButton.addEventListener('click', function () {
         },
         errorMsg
     );
+    //all sounds are not on loop 
+    $loopAll.innerHTML = 'Loop all';
     console.log(foundSounds);
 })
 
@@ -404,6 +406,7 @@ const licenses = {
 
 
 /*Play all sounds*/
+const $loopAll = document.getElementById('loop-all');
 document.getElementById('play-all').addEventListener('click', () => {
     soundList.forEach(sound => {
         sound.play();
@@ -414,6 +417,19 @@ document.getElementById('stop-all').addEventListener('click', () => {
         sound.pause();
     })
 });
+$loopAll.addEventListener('click', () => {
+    if ($loopAll.innerHTML == 'Loop all') {
+        soundList.forEach(sound => {
+            sound.loop = true;
+        })
+        $loopAll.innerHTML = 'Unloop all';
+    } else {
+        soundList.forEach(sound => {
+            sound.loop = false;
+        })
+        $loopAll.innerHTML = 'Loop all';
+    }
+})
 
 function deleteAllSounds() {
     $('#sound-div').remove();
