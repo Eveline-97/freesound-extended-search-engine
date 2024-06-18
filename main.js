@@ -51,6 +51,10 @@ let filters = [
         shown: false
     },
     {
+        name: 'loopable',
+        shown: false
+    },
+    {
         name: 'brightness',
         min: 0,
         max: 100,
@@ -167,6 +171,12 @@ $('#pitch').change(() => {
 })
 $('#octave').change(() => {
     filters[1].octave = $octave.value;
+})
+
+/*LOOPABLE*/
+const $loopable = document.getElementById('loopable');
+$('#loopable').change(() => {
+    filters[3].shown = $loopable.checked;
 })
 
 /*RANGE FILTERS*/
@@ -309,6 +319,8 @@ $searchButton.addEventListener('click', function () {
                 filterString += `ac_note_midi:${calculateMidi(filter.rootNote, filter.octave)} `;
             } else if (filter.name == 'single-event') {
                 filterString += `ac_single_event:true `;
+            } else if (filter.name == 'loopable') {
+                filterString += `ac_loop:true `;
             } else {
                 filterString += ` ac_${filter.name}:[${filter.min} TO ${filter.max}] `;
             }
