@@ -2,8 +2,8 @@
 
     var freesound = function () {        
         var authHeader = 'https://freesound.org/home/app_permissions/permission_granted/';
-        var clientId = 'REMOVED_CLIENT_ID';
-        var clientSecret = 'REMOVED_CLIENT_SECRET';
+        var clientId = '';
+        var clientSecret = '';
         var host = 'freesound.org';
 
         var uris = {
