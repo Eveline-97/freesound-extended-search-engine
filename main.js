@@ -402,6 +402,7 @@ const licenses = {
     'http://creativecommons.org/licenses/by/3.0/': 'Attribution 3.0',
     'https://creativecommons.org/licenses/by/4.0/': 'Attribution 4.0',
     'https://creativecommons.org/licenses/by-nc/3.0/': 'CC BY-NC 3.0',
+    'https://creativecommons.org/licenses/by-nc/4.0/': 'CC BY-NC 4.0',
     'https://creativecommons.org/licenses/sampling+/1.0/': 'CC SAMPLING+ 1.0'
 }
 
