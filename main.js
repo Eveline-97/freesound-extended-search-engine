@@ -3,18 +3,48 @@ const $applyKeyButton = document.getElementById('apply-key');
 const $newKeyButton = document.getElementById('new-key');
 const $keyField = document.getElementById('key');
 
-$applyKeyButton.addEventListener('click', () => {
-    let token = $keyField.value;
-    freesound.setToken(token);
+function setCookie(name, value) {
+    localStorage.setItem(name, value);
+}
+
+function getCookie(name) {
+    return localStorage.getItem('freesoundToken');
+}
+
+function removeCookie(name) {
+    localStorage.removeItem('freesoundToken');
+}
+
+//restore token on page load
+const savedToken = getCookie('freesoundToken');
+
+function changeLayoutForToken() {
     $applyKeyButton.innerHTML = '&#10004;';
     $applyKeyButton.classList.add('applied');
     $newKeyButton.classList.add('show');
     $newKeyButton.classList.remove('hidden');
     $keyField.classList.add('hidden');
+}
+
+if (savedToken) {
+    console.log('Saved token:', savedToken);
+    freesound.setToken(savedToken);
+    changeLayoutForToken();
+}
+
+$applyKeyButton.addEventListener('click', () => {
+    const token = $keyField.value;
+    if (!token) return;
+
+    freesound.setToken(token);
+    setCookie('freesoundToken', token);
+
+    changeLayoutForToken();
     $keyField.value = '';
 })
 
 $newKeyButton.addEventListener('click', () => {
+    removeCookie('freesoundToken');
     $applyKeyButton.innerHTML = 'apply key';
     $applyKeyButton.classList.remove('applied');
     $newKeyButton.classList.remove('show');
@@ -286,7 +316,7 @@ const midiNotes = {
 }
 
 function calculateMidi(noteName, octave) {
-    return midiNotes[noteName] + 12*octave;
+    return midiNotes[noteName] + 12 * octave;
 }
 
 /*SEARCH*/
@@ -362,7 +392,7 @@ function displaySounds(arr) {
             result => {
                 foundSounds[index].src = result.url;
                 //create audio element
-                snd = new Audio(result.previews['preview-hq-mp3']);
+                let snd = new Audio(result.previews['preview-hq-mp3']);
                 snd.setAttribute('title', result.name);
                 snd.controls = true;
                 //create div
