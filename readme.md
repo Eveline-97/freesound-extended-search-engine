@@ -18,7 +18,7 @@ When making a lot of requests you might encounter an error, this is to do with A
 
 I have therefore programmed a limit of 60 sound results per request.
 
-You can either download and run the code on a local server or use [this website](https://evelinevervliet.com/freesound). My site does not store any of the data you type in, so your api key is safe. However, this also means you'll have to resubmit the key with each new session.
+You can either download and run the code on a local server or use [this website](https://evelinevervliet.com/freesound).
 
 ## Issues
 
