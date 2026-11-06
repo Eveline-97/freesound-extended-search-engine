@@ -331,6 +331,7 @@ let filterQuery;
 
 $searchButton.addEventListener('click', function () {
     filterString = '';
+    let invalid = false;
     filters.forEach(filter => {
         //only add those filters that are shown
         if (filter.shown) {
@@ -345,8 +346,10 @@ $searchButton.addEventListener('click', function () {
                 //special case for pitch
                 if (filter.rootNote == 'none' || filter.octave == 'none') {
                     alert('Please provide all necessary information for the pitch');
+                    invalid = true;
+                } else {
+                    filterString += `ac_note_midi:${calculateMidi(filter.rootNote, filter.octave)} `;
                 }
-                filterString += `ac_note_midi:${calculateMidi(filter.rootNote, filter.octave)} `;
             } else if (filter.name == 'single-event') {
                 filterString += `ac_single_event:true `;
             } else if (filter.name == 'loopable') {
@@ -356,6 +359,7 @@ $searchButton.addEventListener('click', function () {
             }
         }
     });
+    if (invalid) return;
     if (filterString == '') {
         filterQuery = { page_size: $amountOfResults.value }
     } else {
@@ -471,8 +475,9 @@ function deleteAllSounds() {
     $('footer').before(newDiv);
 }
 
-function errorMsg() {
-    alert('Your search was invalid. Make sure you applied a correct API key.');
-    //401: inauthenticated, your API key is invalid
-    //429: too many requests
+function errorMsg(xhr) {
+    console.error('Freesound error', xhr.status, xhr.responseText);
+    if (xhr.status === 401) alert('Invalid API key.');
+    else if (xhr.status === 429) alert('Too many requests, wait a minute and try again.');
+    else alert('Search failed (' + xhr.status + '): ' + xhr.responseText);
 }
