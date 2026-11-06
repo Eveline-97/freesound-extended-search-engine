@@ -323,7 +323,7 @@ function calculateMidi(noteName, octave) {
 let foundSounds = [];
 let soundList = [];
 
-let filterString = `ac_tonality:[B major] ac_tonality_confidence:[0.8 TO 1]`;
+let filterString = `tonality:[B major] tonality_confidence:[0.8 TO 1]`;
 let filterQuery;
 
 /*license: 
@@ -340,22 +340,22 @@ $searchButton.addEventListener('click', function () {
                 if (filter.rootNote == 'none' || filter.scale == 'none') {
                     alert('Please provide all necessary information for the tonality');
                 }
-                filterString += `ac_${filter.name}:"${filter.rootNote} ${filter.scale}" `;
-                filterString += `ac_tonality_confidence:[${filter.min / 100} TO ${filter.max / 100}] `;
+                filterString += `${filter.name}:"${filter.rootNote} ${filter.scale}" `;
+                filterString += `tonality_confidence:[${filter.min / 100} TO ${filter.max / 100}] `;
             } else if (filter.name == 'pitch') {
                 //special case for pitch
                 if (filter.rootNote == 'none' || filter.octave == 'none') {
                     alert('Please provide all necessary information for the pitch');
                     invalid = true;
                 } else {
-                    filterString += `ac_note_midi:${calculateMidi(filter.rootNote, filter.octave)} `;
+                    filterString += `note_midi:${calculateMidi(filter.rootNote, filter.octave)} `;
                 }
             } else if (filter.name == 'single-event') {
-                filterString += `ac_single_event:true `;
+                filterString += `single_event:true `;
             } else if (filter.name == 'loopable') {
-                filterString += `ac_loop:true `;
+                filterString += `loopable:true `;
             } else {
-                filterString += ` ac_${filter.name}:[${filter.min} TO ${filter.max}] `;
+                filterString += ` ${filter.name}:[${filter.min} TO ${filter.max}] `;
             }
         }
     });
