@@ -7,8 +7,6 @@ For the moment, the site does not provide a download option, however there is a 
 
 Makes use of [g-roma's](https://github.com/g-roma) [JS client for the freesound.org API](https://github.com/g-roma/freesound.js).
 
-**Tonalities with sharps are currently causing errors with Freesound API searches and have therefore been disabled, see [issue #1](https://github.com/Eveline-97/freesound-extended-search-engine/issues/1).**
-
 ## Installation
 
 Before use, you need to make a [Freesound account](https://freesound.org/) and request a unique [API key](https://freesound.org/apiv2/apply/) which you'll use for making requests to the Freesound API. Read the Freesound API terms of use [here](https://freesound.org/docs/api/terms_of_use.html).

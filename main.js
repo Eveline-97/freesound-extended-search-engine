@@ -323,11 +323,8 @@ function calculateMidi(noteName, octave) {
 let foundSounds = [];
 let soundList = [];
 
-let filterString = `tonality:[B major] tonality_confidence:[0.8 TO 1]`;
+let filterString = '';
 let filterQuery;
-
-/*license: 
-"http://creativecommons.org/publicdomain/zero/1.0/"*/
 
 $searchButton.addEventListener('click', function () {
     filterString = '';
@@ -339,9 +336,11 @@ $searchButton.addEventListener('click', function () {
                 //special case for tonality, because 0 to 1 not 0 to 100
                 if (filter.rootNote == 'none' || filter.scale == 'none') {
                     alert('Please provide all necessary information for the tonality');
+                    invalid = true;
+                } else {
+                    filterString += `${filter.name}:"${filter.rootNote} ${filter.scale}" `;
+                    filterString += `tonality_confidence:[${filter.min / 100} TO ${filter.max / 100}] `;
                 }
-                filterString += `${filter.name}:"${filter.rootNote} ${filter.scale}" `;
-                filterString += `tonality_confidence:[${filter.min / 100} TO ${filter.max / 100}] `;
             } else if (filter.name == 'pitch') {
                 //special case for pitch
                 if (filter.rootNote == 'none' || filter.octave == 'none') {
@@ -359,23 +358,24 @@ $searchButton.addEventListener('click', function () {
             }
         }
     });
+
     if (invalid) return;
-    if (filterString == '') {
-        filterQuery = { page_size: $amountOfResults.value }
-    } else {
-        filterQuery = { filter: filterString, page_size: $amountOfResults.value };
+
+    filterQuery = {
+        page_size: $amountOfResults.value,
+        fields: 'id,name,url,license,previews'
+    };
+    if (filterString != '') {
+        filterQuery.filter = filterString;
     }
-    console.log(filterString);
 
     foundSounds = [];
 
-    freesound.textSearch(
+    freesound.search(
         $queryField.value,
         filterQuery,
         sounds => {
-            sounds.results.forEach(sound => {
-                foundSounds.push(sound);
-            });
+            foundSounds = sounds.results;
             deleteAllSounds();
             displaySounds(foundSounds);
         },
@@ -383,38 +383,29 @@ $searchButton.addEventListener('click', function () {
     );
     //all sounds are not on loop 
     $loopAll.innerHTML = 'Loop all';
-    console.log(foundSounds);
 })
 
 function displaySounds(arr) {
     soundList = [];
 
     //now get sounds
-    arr.forEach((sound, index) => {
-        freesound.getSound(
-            sound.id,
-            result => {
-                foundSounds[index].src = result.url;
-                //create audio element
-                let snd = new Audio(result.previews['preview-hq-mp3']);
-                snd.setAttribute('title', result.name);
-                snd.controls = true;
-                //create div
-                let div = document.createElement('div');
-                div.setAttribute('class', 'audio-element');
-                //add div and elements to sound-div
-                document.getElementById('sound-div').appendChild(div);
-                div.appendChild(snd);
-                div.appendChild(createLink(result.url, 'source'));
-                div.appendChild(createLink(result.license, 'license'));
-                soundList.push(snd);
-            },
-            errorMsg
-        )
-    })
+    arr.forEach(sound => {
+        //create audio element
+        let snd = new Audio(sound.previews['preview-hq-mp3']);
+        snd.setAttribute('title', sound.name);
+        snd.controls = true;
+        //create div
+        let div = document.createElement('div');
+        div.setAttribute('class', 'audio-element');
+        //add div and elements to sound-div
+        document.getElementById('sound-div').appendChild(div);
+        div.appendChild(snd);
+        div.appendChild(createLink(sound.url, 'source'));
+        div.appendChild(createLink(sound.license, 'license'));
+        soundList.push(snd);
+    });
     //because sound-div weirdly moves out of result-div
     $('#sound-div').appendTo('#result-div');
-    console.log(soundList);
 }
 
 function createLink(url, name) {
